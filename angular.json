@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pawtner_frontend": {
+    "pawtner-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/pawtner_frontend",
+            "outputPath": "dist/pawtner-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pawtner_frontend:build:production"
+              "buildTarget": "pawtner-frontend:build:production"
             },
             "development": {
-              "buildTarget": "pawtner_frontend:build:development"
+              "buildTarget": "pawtner-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -107,6 +107,6 @@
     }
   },
   "cli": {
-    "analytics": "dee7976a-750a-4c67-ac35-6f629e773f7f"
+    "analytics": "44130a25-cf7a-47dd-bbb1-8f6f610cb4d8"
   }
 }

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'pawtner_frontend'`, () => {
+  it(`should have as title 'pawtner-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pawtner_frontend');
+    expect(app.title).toEqual('pawtner-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pawtner_frontend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pawtner-frontend');
   });
 });
