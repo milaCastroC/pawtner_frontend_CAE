@@ -1,63 +1,256 @@
 .login-container {
-  @apply flex flex-col md:flex-row h-screen w-full;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin: 3rem;
+  }
 }
 
 .left-panel {
-  @apply hidden md:flex md:w-1/2 bg-neutral-grayLighter;
+  display: none;
+  background-color: var(--neutral-grayLighter, #E2E8EC);
+  
+  @media (min-width: 768px) {
+    display: flex;
+    width: 50%;
+  }
+  
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+  }
 }
 
-.left-panel-content {
-  @apply flex items-center justify-center w-full h-full;
-}
-
-.logo-box {
-  @apply text-neutral-grayDarker text-center;
-}
-
-.logo-icon {
-  @apply w-32 h-32 mx-auto;
-}
-
-.logo-text {
-  @apply mt-4 font-body;
+.logo {
+  &-box {
+    color: var(--neutral-grayDarker, #263238);
+    text-align: center;
+  }
+  
+  &-icon {
+    width: 8rem;
+    height: 8rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  &-text {
+    margin-top: 1rem;
+    font-family: var(--font-body, "Nunito Sans", sans-serif);
+  }
 }
 
 .right-panel {
-  @apply w-full md:w-1/2 flex items-center justify-center bg-neutral-grayLightest p-6;
-}
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-grayLightest, #F5F7F8);
+  padding: 1.5rem;
+  border-radius: 20px;
 
-.form-box {
-  @apply w-full max-w-md;
-}
-
-.form-title {
-  @apply text-2xl font-title font-bold text-center mb-8;
+  
+  @media (min-width: 768px) {
+    width: 50%;
+    border-radius: 0;
+  }
 }
 
 .form {
-  @apply space-y-6;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  &-box {
+    width: 100%;
+    max-width: 28rem;
+  }
+  
+  &-title {
+    font-size: 1.5rem;
+    font-family: var(--font-title, "Poppins", sans-serif);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 }
 
 .field-group {
-  @apply space-y-2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .label {
-  @apply block font-body font-semibold text-neutral-grayDarker;
+  display: block;
+  font-family: var(--font-body, "Nunito Sans", sans-serif);
+  font-weight: 600;
+  color: var(--neutral-grayDarker, #263238);
 }
 
 .input {
-  @apply w-full p-3 bg-neutral-white border border-neutral-grayLighter rounded focus:outline-none focus:ring-2 focus:ring-primary;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--neutral-white, #FFFFFF);
+  border: 1px solid var(--neutral-grayLighter, #E2E8EC);
+  border-radius: 0.25rem;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary, #00A5CF);
+  }
 }
 
 .error-message {
-  @apply text-state-error text-sm;
+  color: var(--state-error, #E55A5A);
+  font-size: 0.875rem;
 }
 
 .submit-button {
-  @apply w-full py-3 bg-neutral-grayLight hover:bg-neutral-grayDark text-neutral-white font-title font-bold transition-colors duration-300 uppercase;
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: var(--neutral-grayLight, #B0BBC2);
+  color: var(--neutral-white, #FFFFFF);
+  font-family: var(--font-title, "Poppins", sans-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: var(--neutral-grayDark, #5D6D77);
+  }
 }
 
 .footer-text {
-  @apply text-center text-sm font-body text-neutral-grayDark mt-4;
+  text-align: center;
+  font-size: 0.875rem;
+  font-family: var(--font-body, "Nunito Sans", sans-serif);
+  color: var(--neutral-grayDark, #5D6D77);
+  margin-top: 1rem;
 }
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--neutral-grayDarker);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-grayLighter);
+  border-radius: 0.25rem;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+}
+
+.error-message {
+  color: var(--state-error);
+  font-size: 0.875rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: var(--neutral-grayLight);
+  color: var(--neutral-white);
+  font-family: var(--font-title);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  
+  &:hover {
+    background-color: var(--neutral-grayDark);
+  }
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  color: var(--neutral-grayDark);
+  margin-top: 1rem;
+}
+
+// .login-container {
+//   @apply flex flex-col md:flex-row h-screen w-full;
+// }
+
+// .left-panel {
+//   @apply hidden md:flex md:w-1/2 bg-neutral-grayLighter;
+// }
+
+// .left-panel-content {
+//   @apply flex items-center justify-center w-full h-full;
+// }
+
+// .logo-box {
+//   @apply text-neutral-grayDarker text-center;
+// }
+
+// .logo-icon {
+//   @apply w-32 h-32 mx-auto;
+// }
+
+// .logo-text {
+//   @apply mt-4 font-body;
+// }
+
+// .right-panel {
+//   @apply w-full md:w-1/2 flex items-center justify-center bg-neutral-grayLightest p-6;
+// }
+
+// .form-box {
+//   @apply w-full max-w-md;
+// }
+
+// .form-title {
+//   @apply text-2xl font-title font-bold text-center mb-8;
+// }
+
+// .form {
+//   @apply space-y-6;
+// }
+
+// .field-group {
+//   @apply space-y-2;
+// }
+
+// .label {
+//   @apply block font-body font-semibold text-neutral-grayDarker;
+// }
+
+// .input {
+//   @apply w-full p-3 bg-neutral-white border border-neutral-grayLighter rounded focus:outline-none focus:ring-2 focus:ring-primary;
+// }
+
+// .error-message {
+//   @apply text-state-error text-sm;
+// }
+
+// .submit-button {
+//   @apply w-full py-3 bg-neutral-grayLight hover:bg-neutral-grayDark text-neutral-white font-title font-bold transition-colors duration-300 uppercase;
+// }
+
+// .footer-text {
+//   @apply text-center text-sm font-body text-neutral-grayDark mt-4;
+// }
