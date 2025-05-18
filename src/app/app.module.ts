@@ -7,6 +7,8 @@ import { LoginFormComponent } from './modules/auth/components/login-form/login-f
 import { HeaderComponent } from './globals/components/header/header.component';
 import { FooterComponent } from './globals/components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    BrowserAnimationsModule, //Animaciones del toast
+    ToastrModule.forRoot({ // Config básica del toast
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

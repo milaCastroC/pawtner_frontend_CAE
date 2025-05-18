@@ -2,3 +2,106 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Asegúrate de incluir Font Awesome en tu proyecto */
+/* Agrega en index.html: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> */
+
+/* Estilo base para todos los toasts*/
+.toast-container .ngx-toastr {
+  background-color: #ffffff !important;
+  border: 2px solid;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  font-weight: 500;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/* Eliminar iconos originales */
+.toast-success,
+.toast-error,
+.toast-info,
+.toast-warning {
+  background-image: none !important;
+}
+
+.toast-success:before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f00c"; /* Ícono de check */
+  font-weight: 900;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2CC091 !important;
+  font-size: 18px;
+}
+
+.toast-error:before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f00d"; /* Ícono de X */
+  font-weight: 900;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #E55A5A !important;
+  font-size: 18px;
+}
+
+.toast-info:before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f129"; /* Ícono de información */
+  font-weight: 900;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #41A4D0 !important;
+  font-size: 18px;
+}
+
+.toast-warning:before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f071"; /* Ícono de advertencia */
+  font-weight: 900;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #F0B64D !important;
+  font-size: 18px;
+}
+
+/* Resto de estilos igual que antes */
+.toast-container .ngx-toastr .toast-close-button {
+  color: #333333 !important;
+  opacity: 1;
+  right: 10px;
+  top: 5px;
+  text-shadow: none;
+  font-size: 16px;
+}
+
+.toast-container .ngx-toastr .toast-title,
+.toast-container .ngx-toastr .toast-message {
+  padding-left: 0px !important;
+}
+
+.toast-container .toast-success {
+  border-color: #2CC091 !important;
+  color: #2CC091 !important;
+}
+
+.toast-container .toast-error {
+  border-color: #E55A5A !important;
+  color: #E55A5A !important;
+}
+
+.toast-container .toast-info {
+  border-color: #41A4D0 !important;
+  color: #41A4D0 !important;
+}
+
+.toast-container .toast-warning {
+  border-color: #F0B64D !important;
+  color: #F0B64D !important;
+}
