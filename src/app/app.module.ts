@@ -23,7 +23,10 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule, //Animaciones del toast
     ToastrModule.forRoot({ // Config básica del toast
+      timeOut: 3000,
       positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true
     }),
   ],
   providers: [],
