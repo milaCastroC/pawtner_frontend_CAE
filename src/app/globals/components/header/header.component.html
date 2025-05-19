@@ -1,1 +1,28 @@
-<p>header works!</p>
+<header class="w-full bg-neutral-white border-b-4 border-primary shadow p-4">
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+    
+    <!-- Logo y botón hamburguesa -->
+    <div class="flex justify-between items-center">
+      <div class="text-xl font-title font-bold text-support-navy">
+        Logo
+      </div>
+
+      <!-- Botón hamburguesa solo en móviles -->
+      <button class="sm:hidden focus:outline-none" aria-label="Menú">
+        <svg class="w-6 h-6 text-neutral-grayDark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Botón cerrar sesión solo en pantallas grandes -->
+    <div class="hidden sm:flex justify-end">
+      <button
+        class="bg-secondary text-white font-semibold px-4 py-2 rounded hover:bg-support-lightgreen transition">
+        Cerrar sesión
+      </button>
+    </div>
+
+  </div>
+</header>
