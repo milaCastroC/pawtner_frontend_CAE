@@ -1,58 +1,48 @@
-<div class="login-container">
-  <!-- Sección izquierda (imagen) - Solo visible en desktop -->
-  <div class="left-panel">
-    <div class="left-panel-content">
-      <div class="logo-box">
-        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
-          <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="currentColor"/>
-        </svg>
-        <p class="logo-text">Logo de la empresa</p>
+<div class="flex min-h-screen">
+  <!-- Sección izquierda -->
+  <div class="hidden md:flex w-1/2 items-center justify-center text-white p-8">
+    <div class="text-center">
+      <div class="mb-4">
+        <svg class="w-16 h-16 mx-auto text-neutral-white" viewBox="0 0 24 24" fill="currentColor">...</svg>
       </div>
+      <p class="text-lg font-title">Logo de la empresa</p>
     </div>
   </div>
 
   <!-- Sección derecha (formulario) -->
-  <div class="right-panel">
-    <div class="form-box">
-      <h1 class="form-title">INICIO DE SESIÓN</h1>
-      
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
-        <div class="field-group">
-          <label for="email" class="label">Correo electrónico</label>
-          <input 
-            type="email"
-            id="email"
-            formControlName="email"
-            placeholder="correo@example.com"
-            class="input"
-          />
-          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+  <div class="w-full md:w-1/2 bg-neutral-grayLightest flex items-center justify-center p-6">
+    <div class="w-full max-w-sm bg-white rounded-xl shadow-lg p-8">
+      <h1 class="text-2xl font-title text-primary mb-6 text-center">INICIO DE SESIÓN</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-neutral-grayDark">Correo electrónico</label>
+          <input id="email" type="email" formControlName="email"
+            class="mt-1 w-full px-4 py-2 border border-neutral-grayLighter rounded-md focus:outline-none focus:ring-2 focus:ring-primary" 
+            placeholder="correo@example.com" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-sm text-state-error mt-1">
             Correo electrónico inválido
           </div>
         </div>
 
-        <div class="field-group">
-          <label for="password" class="label">Contraseña</label>
-          <input 
-            type="password"
-            id="password"
-            formControlName="password"
-            placeholder="••••••••••"
-            class="input"
-          />
-          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        <div>
+          <label for="password" class="block text-sm font-medium text-neutral-grayDark">Contraseña</label>
+          <input id="password" type="password" formControlName="password"
+            class="mt-1 w-full px-4 py-2 border border-neutral-grayLighter rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="••••••••" />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-sm text-state-error mt-1">
             Contraseña requerida
           </div>
         </div>
 
-        <button type="submit" class="submit-button">
+        <button type="submit"
+          class="w-full bg-primary text-white py-2 rounded-md hover:bg-secondary transition-colors font-medium">
           Iniciar Sesión
         </button>
 
-        <p class="footer-text">
-          ¿No tienes una cuenta aún?<br>
-          Comunícate con tu empresa
+        <p class="text-sm text-center text-neutral-grayDark mt-4">
+          ¿No tienes una cuenta aún? <br />
+          <b class="text-secondary">Comunícate con tu empresa</b>
         </p>
       </form>
     </div>
