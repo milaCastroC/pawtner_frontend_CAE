@@ -1,9 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Asegúrate de incluir Font Awesome en tu proyecto */
-/* Agrega en index.html: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> */
 
 /* Estilo base para todos los toasts*/
 .toast-container .ngx-toastr {

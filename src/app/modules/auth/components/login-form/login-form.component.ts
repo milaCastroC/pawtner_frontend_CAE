@@ -25,7 +25,7 @@ export class LoginFormComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.toastr.success("Ejemplo toast success");
-      // this.toastr.warning("Ejemplo toast warning");
+      //  this.toastr.warning("Ejemplo toast warning");
       // this.toastr.error("Ejemplo toast error");
       // this.toastr.info("Ejemplo toast info");
 
