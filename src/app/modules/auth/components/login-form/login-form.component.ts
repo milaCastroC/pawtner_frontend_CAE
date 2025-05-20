@@ -4,12 +4,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../../../models/auth/login-request';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    HttpClientModule,
     CommonModule
   ],
   templateUrl: './login-form.component.html',
