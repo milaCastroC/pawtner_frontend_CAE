@@ -1,24 +1,25 @@
+<!-- src\app\pages\dashboard-page\dashboard-page.component.html -->
 <div class="flex flex-col min-h-screen bg-neutral-grayLightest">
   <app-header class="md:block bg-support-navy text-neutral-white"></app-header>
 
   <div class="flex flex-1">
     <!-- Sidebar visible solo en desktop -->
-    <div class="sidebar hidden w-64 md:block bg-support-navy text-neutral-white">Aqui van los botones del menu</div>
+    <app-sidebar></app-sidebar>
     <!-- Contenido principal -->
     <main class="flex-1 p-4 md:p-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="bg-white rounded-lg shadow p-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-title font-bold text-primary">
-                        Bienvenido, veterinario <!--Acá va el nombre del veterinario-->
-                    </h1>
-                    <p class="text-neutral-grayDark mt-2">
-                        Hoy es FECHA <!--Acá va la fecha-->
-                    </p>
-                </div>
-            </div>
-        
-        
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-white rounded-lg shadow p-6">
+          <div>
+            <h1 class="text-2xl md:text-3xl font-title font-bold text-primary">
+              Bienvenido, veterinario <!--Acá va el nombre del veterinario-->
+            </h1>
+            <p class="text-neutral-grayDark mt-2">
+              Hoy es FECHA <!--Acá va la fecha-->
+            </p>
+          </div>
+        </div>
+
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
           <!-- Sección de citas de hoy -->
           <div class="lg:col-span-2">
@@ -27,7 +28,7 @@
             </h2>
             <app-appointments-list [appointments]="todaysAppointments"></app-appointments-list>
           </div>
-          
+
           <!-- Sección de mascotas (sidebar en mobile) -->
           <div class="lg:col-span-1">
             <h2 class="text-xl font-title font-semibold text-neutral-grayDarker mb-4">
@@ -41,6 +42,6 @@
       </div>
     </main>
   </div>
-  
+
   <app-footer class="mt-auto"></app-footer>
 </div>

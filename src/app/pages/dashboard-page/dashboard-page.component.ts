@@ -4,6 +4,7 @@ import { HeaderComponent } from '../../globals/components/header/header.componen
 import { AppointmentsListComponent } from '../../modules/dashboard/components/appointments-list/appointments-list.component';
 import { PetCardComponent } from '../../modules/dashboard/components/pet-card/pet-card.component';
 import { FooterComponent } from '../../globals/components/footer/footer.component';
+import { SidebarComponent } from "../../globals/components/sidebar/sidebar.component";
 interface Appointment {
   petName: string;
   type: string;
@@ -26,8 +27,9 @@ interface Pet {
     HeaderComponent,
     AppointmentsListComponent,
     PetCardComponent,
-    FooterComponent
-  ],
+    FooterComponent,
+    SidebarComponent
+],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'
 })
