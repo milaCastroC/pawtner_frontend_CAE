@@ -1,10 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-form',
-  standalone: false,
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    CommonModule
+  ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })

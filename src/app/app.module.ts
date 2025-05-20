@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginFormComponent } from './modules/auth/components/login-form/login-form.component';
-import { HeaderComponent } from './globals/components/header/header.component';
-import { FooterComponent } from './globals/components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -14,17 +11,20 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginFormComponent,
-    LoginPageComponent,
-    DashboardPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule, //Animaciones del toast
-    ToastrModule.forRoot({ // Config básica del toast
+
+    // PÁGINAS
+    DashboardPageComponent,
+    LoginPageComponent,
+
+    // TOAST CONFIG
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot({ 
       timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,

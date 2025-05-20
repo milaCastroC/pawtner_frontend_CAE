@@ -20,7 +20,14 @@ interface Pet {
 
 @Component({
   selector: 'app-dashboard-page',
-  standalone:false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    AppointmentsListComponent,
+    PetCardComponent,
+    FooterComponent
+  ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'
 })

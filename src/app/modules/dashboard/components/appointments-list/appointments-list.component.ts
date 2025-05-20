@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 interface Appointment {
@@ -10,7 +11,10 @@ interface Appointment {
 
 @Component({
   selector: 'app-appointments-list',
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   templateUrl: './appointments-list.component.html',
   styleUrl: './appointments-list.component.scss'
 })
