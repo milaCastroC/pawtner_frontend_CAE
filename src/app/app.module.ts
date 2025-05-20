@@ -10,14 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    HeaderComponent,
-    FooterComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    DashboardPageComponent
   ],
   imports: [
     BrowserModule,

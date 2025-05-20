@@ -1,0 +1,29 @@
+// dashboard-page.component.scss
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mobile-menu {
+  transition: transform 0.3s ease;
+  
+  &--open {
+    transform: translateX(0);
+  }
+  
+  &--closed {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 767px) {
+  .appointments-section {
+    order: 1;
+  }
+  
+  .pets-section {
+    order: 2;
+    margin-top: 1.5rem;
+  }
+}
