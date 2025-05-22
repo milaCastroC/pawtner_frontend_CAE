@@ -1,28 +1,27 @@
-<header class="w-full bg-neutral-white border-b-4 border-primary shadow p-4">
+<header class="w-full bg-neutral-white border-b-4 border-primary shadow p-4 relative z-50">
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
     
     <!-- Logo y botón hamburguesa -->
-    <div class="flex justify-between items-center">
-      <div class="flex justify-between items-center gap-4">
-        <img src="assets/images/Logo-fondo-transparente.png" alt="Logo Pawtner" class="h-16 sm:h-20 object-contain" />
-      </div>
+    <div class="flex justify-between items-center w-full sm:w-auto">
+      <img src="assets/images/Logo-fondo-transparente.png" alt="Logo Pawtner" class="h-16 sm:h-20 object-contain" />
 
       <!-- Botón hamburguesa solo en móviles -->
-      <button class="sm:hidden focus:outline-none" aria-label="Menú">
+      <button (click)="toogleMenu()" class="sm:hidden focus:outline-none" aria-label="Menú">
         <svg class="w-6 h-6 text-neutral-grayDark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-            d="M4 6h16M4 12h16M4 18h16" />
+                d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
-    <!-- Botón cerrar sesión solo en pantallas grandes -->
+    <!-- Botón cerrar sesión solo en escritorio -->
     <div class="hidden sm:flex justify-end">
-      <button
-        class="bg-primary text-white font-semibold px-4 py-2 rounded hover:bg-support-navy transition">
+      <button class="bg-primary text-white font-semibold px-4 py-2 rounded hover:bg-support-navy transition">
         Cerrar sesión
       </button>
     </div>
-
   </div>
+
+  <!-- Menú desplegable solo en móviles -->
+  <app-menu *ngIf="isMenuOpen" class="sm:hidden absolute top-full left-0 w-full"></app-menu>
 </header>
