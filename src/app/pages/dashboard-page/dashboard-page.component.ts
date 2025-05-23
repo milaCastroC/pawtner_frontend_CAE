@@ -14,6 +14,7 @@ import { PetService } from '../../modules/pets/services/pet.service';
 import { ScheduleService } from '../../modules/schedule/services/schedule.service';
 import { Pet } from '../../models/pets/pet';
 import { parseISODateToLocalDate } from '../../globals/utils/dates/parseISODateToLocalDate';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -43,26 +44,13 @@ export class DashboardPageComponent implements OnInit {
   vetName = this.user.name;
   today = formatDate(new Date(), 'dd/mm/yyyy');
   todaysAppointments: DashboardAppointment[] = [];
+  pets: Pet[] = [];
 
   filter: AppointmentFilter = {
     veterinarianId: this.user.userId,
     date: new Date(),
     status: 'Confirmada'
   }
-
-    pets: Pet[] = [
-    {
-      mascotaId: 1,
-      propietarioId: 1,
-      nombre: 'Bella',
-      especie: 'Perro',
-      raza: 'Labrador',
-      sexo: 'Hembra',
-      fechaNacimiento: new Date(2020, 1, 1),
-      edad: 3,
-      peso: 25
-    },
-  ];
 
   ngOnInit(): void {
     console.log(this.filter.date);
@@ -81,10 +69,8 @@ export class DashboardPageComponent implements OnInit {
     console.log(appointments);
     
     for (const appt of appointments) {
-      const [pet, schedule] = await Promise.all([
-        this.petService.getPetById(appt.mascotaId),
-        this.scheduleService.getScheduleById(appt.horarioId)
-      ]);
+      const pet = await firstValueFrom(this.petService.getPetById(appt.mascotaId));
+      const schedule = this.scheduleService.getScheduleById(appt.horarioId)
 
       let durationMs = schedule.horaFin.getTime() - schedule.horaInicio.getTime() ;
       let durationMin = durationMs / 60000;
@@ -97,6 +83,8 @@ export class DashboardPageComponent implements OnInit {
         schedule: schedule,
         duration: durationMin 
       });
+
+      this.pets.push(pet);
     }
 
     this.todaysAppointments = dashboardAppointments;

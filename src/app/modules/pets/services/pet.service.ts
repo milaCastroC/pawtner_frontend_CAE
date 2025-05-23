@@ -1,25 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Pet } from '../../../models/pets/pet';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
 
-  constructor() { }
+  constructor(private readonly http: HttpClient) { }
 
-  getPetById(id: number): Pet {
-    // Aquí iría la lógica para obtener la mascota por ID
-    return {
-      mascotaId: 5,
-      propietarioId: 5,
-      nombre: "Firulais",
-      especie: "Perro",
-      raza: "Labrador",
-      sexo: "Macho",
-      fechaNacimiento: new Date(2020, 1, 1),
-      edad: 3,
-      peso: 20
-    };
+  getPetById(id: number): Observable<Pet> {
+    return this.http.get<any>(`${environment.apiUrl}/mascotas/${id}`);
   }
 }
