@@ -1,0 +1,27 @@
+<div class="space-y-4">
+
+  <label class="block border border-neutral-grayLight rounded-md p-3">
+    <span class="block text-sm font-semibold mb-1 text-neutral-grayDark">Diagnóstico</span>
+    <textarea [(ngModel)]="diagnostico" class="w-full border-none outline-none bg-transparent" rows="3"></textarea>
+  </label>
+
+  <label class="block border border-neutral-grayLight rounded-md p-3">
+    <span class="block text-sm font-semibold mb-1 text-neutral-grayDark">Tratamiento</span>
+    <textarea [(ngModel)]="tratamiento" class="w-full border-none outline-none bg-transparent" rows="3"></textarea>
+  </label>
+
+  <label class="block border border-neutral-grayLight rounded-md p-3">
+    <span class="block text-sm font-semibold mb-1 text-neutral-grayDark">Observaciones</span>
+    <textarea [(ngModel)]="observaciones" class="w-full border-none outline-none bg-transparent" rows="3"></textarea>
+  </label>
+
+  <div class="flex justify-center">
+    <button
+      (click)="onSubmit()"
+      class="flex items-center gap-2 px-4 py-2 rounded bg-primary text-white hover:bg-support-lightgreen font-semibold"
+    >
+      <img src="assets/icons/add_icon.png" alt="Agregar" class="w-5 h-5" />
+      Agregar
+    </button>
+  </div>
+</div>

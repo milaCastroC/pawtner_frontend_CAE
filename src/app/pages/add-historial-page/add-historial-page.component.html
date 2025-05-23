@@ -1,0 +1,21 @@
+<div class="flex flex-col min-h-screen bg-neutral-grayLightest">
+    <app-header></app-header>
+
+    <div class="flex flex-1">
+        <app-sidebar class="hidden md:flex"></app-sidebar>
+
+        <main class="flex-1 p-4 md:p-6 max-w-5xl mx-auto space-y-6">
+            <h1 class="text-lg md:text-xl font-title font-bold text-support-navy flex items-center gap-2 mb-6">
+                <span class="text-xl">←</span> Item del Historial Clínico
+            </h1>
+
+            <!-- Información de la mascota -->
+            <app-pet-info [pet]="pet" />
+
+            <!-- Formulario -->
+            <app-add-medical-record-form (agregar)="onAgregar($event)" />
+        </main>
+    </div>
+
+    <app-footer></app-footer>
+</div>
