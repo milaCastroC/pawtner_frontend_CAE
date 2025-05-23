@@ -1,27 +1,25 @@
 <div class="flex flex-col min-h-screen bg-neutral-grayLightest">
-  <app-header></app-header>
+    <app-header></app-header>
 
-  <div class="flex flex-1">
-    <!-- Sidebar visible en pantallas md+ y con ancho fijo -->
-    <app-sidebar class="w-64 hidden md:block bg-white shadow-md border-r border-neutral-200"></app-sidebar>
+    <div class="flex flex-1">
+        <app-sidebar class="hidden md:flex"></app-sidebar>
 
-    <!-- Contenido principal -->
-    <main class="flex-1 p-4 md:p-6 space-y-6">
-      <h1 class="text-lg md:text-xl font-title font-bold text-neutral-grayDarker flex items-center gap-2 mb-6">
-        <span class="text-xl">←</span> Información de la Mascota
-      </h1>
+        <main class="flex-1 p-4 md:p-6 max-w-5xl mx-auto space-y-6">
+            <h1 class="text-lg md:text-xl font-title font-bold text-support-navy flex items-center gap-2 mb-6">
+                <span class="text-xl">←</span> Información de la Mascota
+            </h1>
 
-      <app-pet-info [pet]="pet"></app-pet-info>
 
-      <button
-        class="flex items-center gap-2 text-sm text-white bg-primary hover:bg-support-lightgreen px-4 py-2 rounded mx-auto">
-        <img src="assets/icons/edit_icon_white.png" alt="Editar" class="w-4 h-4" />
-        Editar
-      </button>
+            <app-pet-info [pet]="pet"></app-pet-info>
 
-      <app-medical-record [records]="historial"></app-medical-record>
-    </main>
-  </div>
+            <button
+                class="flex items-center gap-2 text-sm text-white bg-primary hover:bg-support-lightgreen px-4 py-2 rounded mx-auto">
+                <img src="assets/icons/edit_icon_white.png" alt="Editar" class="w-4 h-4" />
+                Editar
+            </button>
+            <app-medical-record [records]="historial"></app-medical-record>
+        </main>
+    </div>
 
-  <app-footer></app-footer>
+    <app-footer></app-footer>
 </div>
