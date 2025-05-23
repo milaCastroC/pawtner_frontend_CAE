@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirecciona raíz a /login
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardPageComponent },
-  { path: 'all', component: ViewPetsPageComponent },
-  { path: 'mascota', component: PetDetailPageComponent },
+  { path: 'verMascotas', component: ViewPetsPageComponent },
+  { path: 'infoMascota', component: PetDetailPageComponent },
   { path: 'cita', component: InfoCitaPageComponent},
   { path: 'editarMascota', component: EditPetPageComponent},
   { path: 'item', component: AddHistorialPageComponent},
