@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../../../models/auth/login-request';
@@ -26,15 +26,15 @@ export class LoginFormComponent {
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
-      email: "",
-      password: "",
+      username: ['', [Validators.required]],
+      password: ['', Validators.required]
     })
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
       let credentials: LoginRequest = {
-        username: this.loginForm.value.email,
+        username: this.loginForm.value.username,
         password: this.loginForm.value.password
       }
       this.authService.login(credentials).subscribe({
@@ -42,8 +42,11 @@ export class LoginFormComponent {
           this.toastr.success('Inicio de sesión exitoso', `Bienvenido, ${response.nombreCompleto}`);
         },
         error: (err) => {
-          console.error('Error al iniciar sesión:', err);
-          this.toastr.error('Correo o contraseña incorrectos', 'Error');
+          if (err.status === 401) {
+            this.toastr.error('Usuario o contraseña incorrectos', 'Error');
+          } else {
+            this.toastr.error('Error al iniciar sesión', 'Error');
+          }
         }
       });
           console.log("Formulario enviado", credentials)
