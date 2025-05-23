@@ -2,12 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../../../models/auth/login-request';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    HttpClientModule,
     CommonModule
   ],
   templateUrl: './login-form.component.html',
@@ -19,7 +23,7 @@ export class LoginFormComponent {
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
-
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       email: "",
@@ -29,14 +33,26 @@ export class LoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.toastr.success("Ejemplo toast success");
-      //  this.toastr.warning("Ejemplo toast warning");
-      // this.toastr.error("Ejemplo toast error");
-      // this.toastr.info("Ejemplo toast info");
+      let credentials: LoginRequest = {
+        username: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      }
+      this.authService.login(credentials).subscribe({
+        next: (response) => {
+          this.toastr.success('Inicio de sesión exitoso', `Bienvenido, ${response.nombreCompleto}`);
+        },
+        error: (err) => {
+          console.error('Error al iniciar sesión:', err);
+          this.toastr.error('Correo o contraseña incorrectos', 'Error');
+        }
+      });
+          console.log("Formulario enviado", credentials)
 
-      console.log("Formulario enviado", this.loginForm.value)
     } else {
-      this.loginForm.markAllAsTouched()
+      this.loginForm.markAllAsTouched();
     }
-  }
+  } 
+
 }
+  
+
