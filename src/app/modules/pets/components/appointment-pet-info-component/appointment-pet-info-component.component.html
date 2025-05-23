@@ -1,0 +1,34 @@
+<section class="bg-white p-6 rounded-xl shadow border border-primary space-y-4 relative">
+  <button class="absolute top-4 right-4 text-sm text-white border bg-primary rounded px-3 py-1 hover:bg-primary hover:text-white transition flex items-center gap-2">
+    <img src="assets/icons/edit_icon_white.png" alt="Editar" class="w-4 h-4" />
+    Editar
+  </button>
+
+  <div class="flex flex-wrap items-center gap-2 text-sm text-neutral-grayDark">
+    <span class="font-bold text-neutral-grayDarker text-base">{{ mascota.nombre }}</span>
+    <span class="bg-neutral-grayLight rounded-full px-2 py-1 text-xs">ID: {{ mascota.id }}</span>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div>
+      <p class="text-sm">Especie: </p>
+      <div class="bg-neutral-grayLightest p-2 rounded">{{ mascota.especie }}</div>
+    </div>
+    <div>
+      <p class="text-sm">Raza: </p>
+      <div class="bg-neutral-grayLightest p-2 rounded">{{ mascota.raza }}</div>
+    </div>
+    <div>
+      <p class="text-sm">Edad: </p>
+      <div class="bg-neutral-grayLightest p-2 rounded">{{ mascota.edad }} años</div>
+    </div>
+    <div>
+      <p class="text-sm">Peso: </p>
+      <div class="bg-neutral-grayLightest p-2 rounded font-bold">{{ mascota.peso }} kg</div>
+    </div>
+    <div class="sm:col-span-2">
+      <p class="text-sm">Propietario: </p>
+      <div class="bg-neutral-grayLightest p-2 rounded font-semibold">{{ mascota.propietario }}</div>
+    </div>
+  </div>
+</section>

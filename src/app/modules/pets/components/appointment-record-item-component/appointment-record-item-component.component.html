@@ -1,0 +1,18 @@
+<!--src\app\modules\pets\components\appointment-record-item-component\appointment-record-item-component.component.html-->
+<div class="bg-white p-4 rounded-md shadow-md flex flex-col md:flex-row md:justify-between md:items-center gap-4 border border-primary mb-4">
+  <div class="flex-1 space-y-1">
+    <div class="flex items-center gap-2 text-sm">
+      <span class="font-semibold">{{ record.fecha }}</span>
+      <span class="bg-neutral-grayLight text-xs px-2 py-1 rounded-full">{{ record.tipo }}</span>
+    </div>
+    <p class="text-sm text-neutral-grayDark"><strong>Diagnóstico:</strong> {{ record.diagnostico }}</p>
+  </div>
+  <div class="flex items-center gap-2 text-lg">
+    <button class="text-primary hover:text-blue-700 transition" (click)="editar.emit(index)">
+      <img src="assets/icons/edit_icon.png" alt="Editar" class="w-5 h-5" />
+    </button>
+    <button class="text-red-500 hover:text-red-700 transition" (click)="eliminar.emit(index)">
+      <img src="assets/icons/delete_icon.png" alt="Eliminar" class="w-5 h-5" />
+    </button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<!--src\app\modules\pets\components\pet-info\pet-info.component.html-->
+<div class="bg-white border border-primary rounded-xl p-6 space-y-6 shadow-md relative">
+  <div class="flex justify-between items-center">
+    <h2 class="font-bold text-2xl text-support-navy">{{ pet.nombre }}</h2>
+    <span class="bg-neutral-grayLight text-sm rounded-full px-3 py-1 text-neutral-grayDark">ID: {{ pet.id }}</span>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold bg-white text-neutral-grayDarker mb-3 border-b pb-1">Datos básicos</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-3 text-sm text-neutral-grayDark">
+      <p><strong>Especie:</strong> {{ pet.especie }}</p>
+      <p><strong>Peso:</strong> {{ pet.peso }} kg</p>
+      <p><strong>Raza:</strong> {{ pet.raza }}</p>
+      <p><strong>Edad:</strong> {{ pet.edad }} años</p>
+      <p><strong>Sexo:</strong> {{ pet.sexo }}</p>
+      <p><strong>Fecha nacimiento:</strong> {{ pet.fechaNacimiento }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Tarjeta: Información del propietario -->
+<div class="bg-white border border-primary rounded-xl p-6 shadow-sm mt-6">
+  <h3 class="text-lg font-semibold text-neutral-grayDarker mb-3 border-b pb-1">Propietario</h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-sm text-neutral-grayDark">
+    <p><strong>Nombre:</strong> {{ pet.propietario }}</p>
+    <p><strong>Teléfono:</strong> {{ pet.telefono }}</p>
+  </div>
+</div>
