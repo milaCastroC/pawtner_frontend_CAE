@@ -5,6 +5,7 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { ViewPetsPageComponent } from './pages/view-pets-page/view-pets-page.component';
 import { PetDetailPageComponent } from './pages/pet-detail-page/pet-detail-page.component';
 import { InfoCitaPageComponent } from './pages/info-cita-page/info-cita-page.component';
+import { EditPetPageComponent } from './pages/edit-pet-page/edit-pet-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirecciona raíz a /login
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'all', component: ViewPetsPageComponent },
   { path: 'mascota', component: PetDetailPageComponent },
   { path: 'cita', component: InfoCitaPageComponent},
+  { path: 'editarMascota', component: EditPetPageComponent},
   { path: '**', redirectTo: 'login' } // Página no encontrada → login
 ];
 
