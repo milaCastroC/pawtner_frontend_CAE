@@ -1,0 +1,49 @@
+<div class="flex flex-col min-h-screen bg-neutral-grayLightest">
+  <app-header></app-header>
+
+  <div class="flex flex-1">
+    <!-- Sidebar fijo a la izquierda en pantallas medianas o mayores -->
+    <app-sidebar class="hidden md:block md:w-64 bg-white border-r border-neutral-200"></app-sidebar>
+
+    <!-- Contenido principal -->
+    <main class="flex-1 p-4 md:p-6">
+      <div class="max-w-6xl mx-auto space-y-8">
+
+        <!-- Título -->
+        <div class="flex items-center gap-2 text-support-navy font-title font-bold text-2xl">
+          <span class="text-xl">←</span>
+          Consulta
+        </div>
+
+        <app-appointment-info-component [cita]="cita"></app-appointment-info-component>
+        <app-appointment-pet-info-component [mascota]="mascota"></app-appointment-pet-info-component>
+
+        <!-- Historial médico -->
+        <section>
+          <h2 class="text-2xl font-semibold text-support-navy mb-4">Historial médico</h2>
+
+          <div class="space-y-4">
+            <app-appointment-record-item-component 
+              *ngFor="let record of historial; index as i"
+              [record]="record"
+              [index]="i"
+              (editar)="editarHistorial(i)"
+              (eliminar)="eliminarHistorial(i)">
+            </app-appointment-record-item-component>
+          </div>
+
+          <div class="flex justify-center mt-6">
+            <button
+              class="flex items-center gap-2 px-4 py-2 border bg-primary rounded-md text-white font-semibold hover:bg-primary hover:text-white transition">
+              <img src="assets/icons/add_icon.png" alt="Agregar" class="w-4 h-4" />
+              Agregar
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,83 @@
+<!-- src/app/pages/view-pets-page/view-pets-page.component.html -->
+<div class="flex flex-col min-h-screen bg-neutral-grayLightest">
+
+    <!-- Header -->
+    <app-header></app-header>
+
+    <!-- Contenido principal -->
+    <div class="flex flex-1">
+
+        <!-- Sidebar solo en escritorio -->
+        <app-sidebar class="hidden md:flex"></app-sidebar>
+
+        <!-- Contenido -->
+        <main class="flex-1 p-4 md:p-6">
+            <div class="max-w-7xl mx-auto space-y-6">
+
+                <!-- Título y buscador -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h1
+                        class="text-xl md:text-2xl font-title font-bold text-support-navy flex items-center gap-2">
+                        <span class="text-xl">←</span> Mascotas registradas
+                    </h1>
+
+                    <!-- Buscador -->
+                    <div class="relative w-full md:w-80">
+                        <input type="text" placeholder="Buscar"
+                            class="w-full pl-10 pr-4 py-2 border border-neutral-grayLight rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                        <img src="assets/icons/buscar_icon.png" alt="Buscar"
+                            class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" />
+                    </div>
+                </div>
+
+                <!-- Tabla en desktop -->
+                <div class="hidden md:block">
+                    <table class="w-full border-collapse mt-4">
+                        <thead class="bg-primary text-white text-left">
+                            <tr>
+                                <th class="p-2">Nombre</th>
+                                <th class="p-2">Especie</th>
+                                <th class="p-2">Raza</th>
+                                <th class="p-2">Edad</th>
+                                <th class="p-2">Peso(KG)</th>
+                                <th class="p-2">Propietario</th>
+                                <th class="p-2 text-center">⋮</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pet of pets" class="bg-white border-b hover:bg-neutral-grayLighter">
+                                <td class="p-2">{{ pet.nombre }}</td>
+                                <td class="p-2">{{ pet.especie }}</td>
+                                <td class="p-2">{{ pet.raza }}</td>
+                                <td class="p-2">{{ pet.edad }}</td>
+                                <td class="p-2">{{ pet.peso }}</td>
+                                <td class="p-2">{{ pet.propietario }}</td>
+                                <td class="text-center">
+                                    <app-pet-actions></app-pet-actions>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tarjetas en móvil -->
+                <div class="md:hidden flex flex-col gap-4">
+                    <div *ngFor="let pet of pets"
+                        class="bg-white p-4 rounded-md shadow border border-neutral-grayLighter">
+                        <p class="font-bold">{{ pet.nombre }}</p>
+                        <p class="text-sm">Especie: {{ pet.especie }} - Raza: {{ pet.raza }}</p>
+                        <p class="text-sm">Edad: {{ pet.edad }} - Peso: {{ pet.peso }} KG</p>
+                        <p class="text-sm">Propietario: {{ pet.propietario }}</p>
+                        <div class="flex justify-end mt-2">
+                            <app-pet-actions></app-pet-actions>
+                        </div>
+                        </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+</div>

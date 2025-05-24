@@ -1,0 +1,30 @@
+<div class="flex flex-col min-h-screen bg-neutral-grayLightest"> <!-- Encabezado --> <app-header></app-header>
+    <!-- Contenido con Sidebar y Main -->
+    <div class="flex flex-1"> <!-- Sidebar solo en escritorio --> <app-sidebar
+            class="hidden md:flex md:w-64"></app-sidebar>
+        <!-- Contenido principal -->
+        <main class="flex-1 p-4 md:p-6 space-y-6">
+            <!-- Título -->
+            <h1 class="text-xl md:text-2xl font-title font-bold text-support-navy flex items-center gap-2 mb-6">
+                <span class="text-xl">←</span> Editar Mascota
+            </h1>
+
+            <!-- Componentes -->
+            <app-pet-edit-form [pet]="pet"></app-pet-edit-form>
+            <app-owner-info-card [owner]="owner"></app-owner-info-card>
+
+            <!-- Botón Guardar -->
+            <div class="flex justify-center">
+                <button
+                    class="flex items-center gap-2 text-sm text-white bg-primary hover:bg-support-lightgreen px-6 py-2 rounded-md">
+                    <img src="assets/icons/edit_icon_white.png" alt="Guardar" class="w-5 h-5" />
+                    Guardar Cambios
+                </button>
+            </div>
+
+            <app-medical-record [records]="historial"></app-medical-record>
+        </main>
+    </div> <!-- Footer -->
+    <app-footer></app-footer>
+
+</div>

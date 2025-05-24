@@ -1,0 +1,20 @@
+<div class="relative inline-block text-left">
+  <!-- Botón tres puntos -->
+  <button (click)="toggleMenu()" class="text-xl px-2 py-1">⋮</button>
+
+  <!-- Menú desplegable -->
+  <div *ngIf="isOpen" class="absolute right-0 mt-2 w-40 bg-white border border-neutral-grayLight rounded-md shadow-lg z-50">
+    <button (click)="ver()" class="flex items-center gap-2 w-full px-4 py-2 hover:bg-neutral-grayLighter">
+      <img src="assets/icons/view_icon.png" alt="Ver" class="w-5 h-5" />
+      <span>Ver</span>
+    </button>
+    <button (click)="editar()" class="flex items-center gap-2 w-full px-4 py-2 hover:bg-neutral-grayLighter">
+      <img src="assets/icons/edit_icon.png" alt="Editar" class="w-5 h-5" />
+      <span>Editar</span>
+    </button>
+    <button (click)="eliminar()" class="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-100 text-red-600">
+      <img src="assets/icons/delete_icon.png" alt="Eliminar" class="w-5 h-5" />
+      <span>Eliminar</span>
+    </button>
+  </div>
+</div>
