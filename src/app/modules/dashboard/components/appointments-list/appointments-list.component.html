@@ -10,11 +10,14 @@
         </div>
         
         <div class="flex-1">
-          <h3 class="font-semibold text-neutral-grayDarker">{{appointment.petName}}</h3>
+          <h3 class="font-semibold text-neutral-grayDarker">{{appointment.pet.nombre}}</h3>
           <p class="text-neutral-grayDark">{{appointment.type}}</p>
           <p class="text-sm text-neutral-grayLight mt-1">
-            {{appointment.time ? (appointment.time | date:'shortTime') : ''}}
-            {{appointment.duration ? ' - ' + appointment.duration + ' mins' : 'INFO CITA'}}
+            {{appointment.date}}
+          </p>
+          <p class="text-sm text-neutral-grayLight mt-1">
+            {{formatTime(appointment.schedule.horaInicio)}} - {{formatTime(appointment.schedule.horaFin)}} • 
+            {{appointment.duration ? + appointment.duration + ' mins' : 'INFO CITA'}}
           </p>
         </div>
         

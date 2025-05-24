@@ -3,7 +3,7 @@ export interface Appointment {
     mascotaId: number;
     horarioId: number;
     veterinarioId: number;
-    fecha: Date;
+    fecha: string;
     tipoCita: string;
     estado: string;
 }

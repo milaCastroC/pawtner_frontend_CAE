@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../../../models/auth/login-request';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -23,30 +24,41 @@ export class LoginFormComponent {
   constructor(
     private toastr: ToastrService,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: "",
-      password: "",
+      username: ['', [Validators.required]],
+      password: ['', Validators.required]
     })
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
       let credentials: LoginRequest = {
-        username: this.loginForm.value.email,
+        username: this.loginForm.value.username,
         password: this.loginForm.value.password
       }
       this.authService.login(credentials).subscribe({
         next: (response) => {
-          this.toastr.success('Inicio de sesión exitoso', `Bienvenido, ${response.nombreCompleto}`);
+          console.log(response);
+          
+          if(response.rol === 'veterinario') {
+            sessionStorage.setItem('StorageUser', JSON.stringify({userId: response.id, username: this.loginForm.value.username, name: response.nombreCompleto}));
+            this.router.navigate(['/dashboard']);
+            this.toastr.success('Inicio de sesión exitoso', `Bienvenido, ${response.nombreCompleto}`);
+          }else if(response.rol === 'admin') {
+            this.toastr.warning(`Hola, ${response.nombreCompleto}. El ingreso como admin aún no está disponible.`, 'Ingreso como admin proximamente...', );
+          }
         },
         error: (err) => {
-          console.error('Error al iniciar sesión:', err);
-          this.toastr.error('Correo o contraseña incorrectos', 'Error');
+          if (err.status === 401) {
+            this.toastr.error('Usuario o contraseña incorrectos', 'Error');
+          } else {
+            this.toastr.error('Error al iniciar sesión', 'Error');
+          }
         }
       });
-          console.log("Formulario enviado", credentials)
 
     } else {
       this.loginForm.markAllAsTouched();

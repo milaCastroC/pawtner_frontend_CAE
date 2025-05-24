@@ -7,8 +7,8 @@
     </div>
     
     <div class="flex-1">
-      <h3 class="font-semibold text-neutral-grayDarker"><!--{{pet.name}}--> Nombre de la mascota</h3>
-      <p class="text-sm text-neutral-grayDark"><!--{{pet.type}} • {{pet.breed}}-->Tipo y raza</p>
+      <h3 class="font-semibold text-neutral-grayDarker">{{ pet.nombre || "Nombre mascota" }}</h3>
+      <p class="text-sm text-neutral-grayDark">{{pet.especie}} • {{pet.raza}}</p>
     </div>
     
     <button class="text-neutral-grayLight hover:text-primary">

@@ -1,12 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface Pet {
-  name: string;
-  type: string;
-  breed: string;
-  lastVisit: Date;
-}
+import { Pet } from '../../../../models/pets/pet';
 
 @Component({
   selector: 'app-pet-card',

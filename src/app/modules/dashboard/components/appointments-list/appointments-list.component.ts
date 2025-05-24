@@ -1,13 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { DashboardAppointment } from '../../../../models/appointments/dashboard-apointments';
+import { formatTimeToHHmm } from '../../../../globals/utils/time/formatHour';
 
-interface Appointment {
-  petName: string;
-  type: string;
-  time?: Date;
-  duration?: number;
-  // Agregar más propiedades según se necesite
-}
 
 @Component({
   selector: 'app-appointments-list',
@@ -19,5 +14,9 @@ interface Appointment {
   styleUrl: './appointments-list.component.scss'
 })
 export class AppointmentsListComponent {
-    @Input() appointments: Appointment[] = [];
+    @Input() appointments: DashboardAppointment[] = [];
+    
+    formatTime(date: Date): string {
+      return formatTimeToHHmm(date);
+    }
 }
