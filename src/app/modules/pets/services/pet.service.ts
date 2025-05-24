@@ -11,6 +11,10 @@ export class PetService {
 
   constructor(private readonly http: HttpClient) { }
 
+  getAllPets(): Observable<Pet[]>{
+    return this.http.get<Pet[]>(`${environment.apiUrl}/mascotas`)
+  }
+
   getPetById(id: number): Observable<Pet> {
     return this.http.get<any>(`${environment.apiUrl}/mascotas/${id}`);
   }

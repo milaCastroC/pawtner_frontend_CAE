@@ -45,13 +45,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let pet of pets" class="bg-white border-b hover:bg-neutral-grayLighter">
+                            <tr *ngFor="let pet of allPets" class="bg-white border-b hover:bg-neutral-grayLighter">
                                 <td class="p-2">{{ pet.nombre }}</td>
                                 <td class="p-2">{{ pet.especie }}</td>
                                 <td class="p-2">{{ pet.raza }}</td>
                                 <td class="p-2">{{ pet.edad }}</td>
                                 <td class="p-2">{{ pet.peso }}</td>
-                                <td class="p-2">{{ pet.propietario }}</td>
+                                <td class="p-2">{{ getPropietarioNombre(pet.propietarioId) }}</td>
                                 <td class="text-center">
                                     <app-pet-actions></app-pet-actions>
                                 </td>
@@ -62,12 +62,12 @@
 
                 <!-- Tarjetas en móvil -->
                 <div class="md:hidden flex flex-col gap-4">
-                    <div *ngFor="let pet of pets"
+                    <div *ngFor="let pet of allPets"
                         class="bg-white p-4 rounded-md shadow border border-neutral-grayLighter">
                         <p class="font-bold">{{ pet.nombre }}</p>
                         <p class="text-sm">Especie: {{ pet.especie }} - Raza: {{ pet.raza }}</p>
                         <p class="text-sm">Edad: {{ pet.edad }} - Peso: {{ pet.peso }} KG</p>
-                        <p class="text-sm">Propietario: {{ pet.propietario }}</p>
+                        <p class="text-sm">Propietario: {{ getPropietarioNombre(pet.propietarioId) }}</p>
                         <div class="flex justify-end mt-2">
                             <app-pet-actions></app-pet-actions>
                         </div>
