@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pet-actions',
@@ -9,6 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './pet-actions.component.scss'
 })
 export class PetActionsComponent {
+  constructor(private router: Router) { }
+  @Input() petId!: any;
+
   isOpen = false;
 
   toggleMenu() {
@@ -20,12 +24,12 @@ export class PetActionsComponent {
   }
 
   ver() {
-    console.log('Ver mascota');
+    this.router.navigate(['/mascotas/info', this.petId]);
     this.closeMenu();
   }
 
   editar() {
-    console.log('Editar mascota');
+    this.router.navigate(['/mascotas/editar', this.petId]);
     this.closeMenu();
   }
 

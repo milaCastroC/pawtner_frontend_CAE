@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'mascotas/ver-todas', component: ViewPetsPageComponent },
-  { path: 'mascotas/info', component: PetDetailPageComponent },
+  { path: 'mascotas/info/:id', component: PetDetailPageComponent },
   { path: 'citas', component: InfoCitaPageComponent},
-  { path: 'mascotas/editar', component: EditPetPageComponent},
+  { path: 'mascotas/editar/:id', component: EditPetPageComponent},
   { path: 'mascotas/agregar-historial', component: AddHistorialPageComponent},
   { path: '**', redirectTo: 'login' } // Página no encontrada → login
 ];
