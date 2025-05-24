@@ -12,11 +12,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirecciona raíz a /login
   { path: 'login', component: LoginPageComponent },
   { path: 'dashboard', component: DashboardPageComponent },
-  { path: 'verMascotas', component: ViewPetsPageComponent },
-  { path: 'infoMascota', component: PetDetailPageComponent },
-  { path: 'cita', component: InfoCitaPageComponent},
-  { path: 'editarMascota', component: EditPetPageComponent},
-  { path: 'item', component: AddHistorialPageComponent},
+  { path: 'mascotas/ver-todas', component: ViewPetsPageComponent },
+  { path: 'mascotas/info', component: PetDetailPageComponent },
+  { path: 'citas', component: InfoCitaPageComponent},
+  { path: 'mascotas/editar', component: EditPetPageComponent},
+  { path: 'mascotas/agregar-historial', component: AddHistorialPageComponent},
   { path: '**', redirectTo: 'login' } // Página no encontrada → login
 ];
 
