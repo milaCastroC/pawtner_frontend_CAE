@@ -1,9 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ItemHistory } from '../../../models/medicalHistory/item-history';
+import { environment } from '../../../../enviroments/enviroment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemHistoryService {
 
-  constructor() { }
+  constructor(private readonly http: HttpClient) { }
+
+  getHistoryByPetId(petId: number): Observable<ItemHistory[]> {
+    return this.http.get<ItemHistory[]>(`${environment.apiUrl}/api/historial/by-mascota/${petId}`);
+  }
 }

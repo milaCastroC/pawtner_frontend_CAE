@@ -10,14 +10,18 @@
             </h1>
 
 
-            <app-pet-info [pet]="pet"></app-pet-info>
+            <app-pet-info 
+                [pet]="pet"
+                [owner]="owner"
+            >
+            </app-pet-info>
 
             <button
                 class="flex items-center gap-2 text-sm text-white bg-primary hover:bg-support-lightgreen px-4 py-2 rounded mx-auto">
                 <img src="assets/icons/edit_icon_white.png" alt="Editar" class="w-4 h-4" />
                 Editar
             </button>
-            <app-medical-record [records]="historial"></app-medical-record>
+            <app-medical-record [records]="medicalHistory"></app-medical-record>
         </main>
     </div>
 

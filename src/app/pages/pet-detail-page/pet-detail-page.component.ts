@@ -1,10 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { SidebarComponent } from '../../globals/components/sidebar/sidebar.component';
 import { FooterComponent } from '../../globals/components/footer/footer.component';
 import { PetInfoComponent } from '../../modules/pets/components/pet-info/pet-info.component';
 import { MedicalRecordComponent } from '../../modules/pets/components/medical-record/medical-record.component';
+import { Pet } from '../../models/pets/pet';
+import { ActivatedRoute } from '@angular/router';
+import { PetService } from '../../modules/pets/services/pet.service';
+import { Client } from '../../models/clients/client';
+import { ItemHistory } from '../../models/medicalHistory/item-history';
+import { ClientsService } from '../../modules/people/clients/services/clients.service';
+import { ItemHistoryService } from '../../modules/medicalHistory/services/item-history.service';
 
 @Component({
   selector: 'app-pet-detail-page',
@@ -13,24 +20,40 @@ import { MedicalRecordComponent } from '../../modules/pets/components/medical-re
   templateUrl: './pet-detail-page.component.html',
   styleUrl: './pet-detail-page.component.scss'
 })
-export class PetDetailPageComponent {
-   pet = {
-    id: 12345,
-    nombre: 'Max',
-    especie: 'Perro',
-    raza: 'Labrador',
-    edad: 5,
-    peso: 28.5,
-    sexo: 'Macho',
-    fechaNacimiento: '08/02/2020',
-    propietario: 'Juancho',
-    telefono: '310 235634'
-  };
+export class PetDetailPageComponent implements OnInit {
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private petService: PetService,
+    private clientService: ClientsService,
+    private historyService: ItemHistoryService
+  ) { }
+  pet: Pet | null = null;
+  owner: Client | null = null;
+  medicalHistory: ItemHistory[] = [];
 
-  historial = [
-    { fecha: '08/02/2020', tipo: 'Control', diagnostico: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...' },
-    { fecha: '08/02/2020', tipo: 'Examen', diagnostico: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...' },
-    { fecha: '08/02/2020', tipo: 'Control', diagnostico: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...' }
-  ];
 
+  ngOnInit(): void {
+    this.petService.getPetById(this.activeRoute.snapshot.params['id']).subscribe((data: Pet) => {
+      this.pet = data;
+      
+      if (this.pet?.mascotaId != null) {
+
+        this.clientService.getClientById(this.pet.mascotaId).subscribe((data: any) => {
+          this.owner = data;
+
+        });
+
+        this.historyService.getHistoryByPetId(this.pet.mascotaId).subscribe((data: ItemHistory[]) => {
+          this.medicalHistory = data;
+        });
+      }
+      
+    });
+
+
+
+
+  }
 }
+
+

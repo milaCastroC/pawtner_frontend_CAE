@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Pet } from '../../../../models/pets/pet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pet-card',
@@ -10,5 +11,10 @@ import { Pet } from '../../../../models/pets/pet';
   styleUrl: './pet-card.component.scss'
 })
 export class PetCardComponent {
+  constructor(private router: Router) {}
   @Input() pet!: Pet;
+
+  ver(){
+    this.router.navigate(['/mascotas/info', this.pet.mascotaId]);
+  }
 }

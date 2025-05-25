@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pet-info',
@@ -9,5 +10,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './pet-info.component.scss'
 })
 export class PetInfoComponent {
-   @Input() pet: any;
+  @Input() pet: any;
+  @Input() owner: any;
+  @Input() medicalHistory: any;
 }
