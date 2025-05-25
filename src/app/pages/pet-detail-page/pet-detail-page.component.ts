@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { SidebarComponent } from '../../globals/components/sidebar/sidebar.component';
@@ -25,7 +25,8 @@ export class PetDetailPageComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private petService: PetService,
     private clientService: ClientsService,
-    private historyService: ItemHistoryService
+    private historyService: ItemHistoryService,
+    private location: Location
   ) { }
   pet: Pet | null = null;
   owner: Client | null = null;
@@ -50,9 +51,10 @@ export class PetDetailPageComponent implements OnInit {
       
     });
 
+  }
 
-
-
+  goBack() {
+    this.location.back();
   }
 }
 

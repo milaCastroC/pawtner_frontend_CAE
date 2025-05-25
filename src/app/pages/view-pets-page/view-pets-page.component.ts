@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { FooterComponent } from '../../globals/components/footer/footer.component';
@@ -20,6 +20,7 @@ export class ViewPetsPageComponent implements OnInit {
   constructor(
     private petService: PetService,
     private clientService: ClientsService,
+    private location: Location
   ) { }
 
   allPets: Pet[] = [];
@@ -44,5 +45,9 @@ export class ViewPetsPageComponent implements OnInit {
 
   getPropietarioNombre(id: number): string {
     return this.clientMap.get(id) || 'Desconocido';
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

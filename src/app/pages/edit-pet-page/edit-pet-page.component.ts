@@ -1,6 +1,6 @@
 // src / app / pages / edit - pet - page / edit - pet - page.component.ts
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { SidebarComponent } from '../../globals/components/sidebar/sidebar.component';
 import { FooterComponent } from '../../globals/components/footer/footer.component';
@@ -25,6 +25,10 @@ import { OwnerInfoCardComponent } from '../../modules/pets/components/owner-info
   styleUrls: ['./edit-pet-page.component.scss']
 })
 export class EditPetPageComponent {
+  constructor(
+    private location: Location
+  ){}
+
   pet = {
     id: 12345,
     nombre: 'Manchas',
@@ -55,4 +59,8 @@ export class EditPetPageComponent {
     nombre: 'Juancho Martínez',
     telefono: '310235634'
   };
+
+  goBack() {
+    this.location.back();
+  }
 }

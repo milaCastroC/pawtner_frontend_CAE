@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { SidebarComponent } from '../../globals/components/sidebar/sidebar.component';
@@ -21,6 +21,10 @@ import { PetInfoComponent } from '../../modules/pets/components/pet-info/pet-inf
   styleUrl: './add-historial-page.component.scss'
 })
 export class AddHistorialPageComponent {
+  constructor(
+    private location: Location
+  ){}
+
   pet = {
     id: 12345,
     nombre: 'Max',
@@ -38,4 +42,9 @@ export class AddHistorialPageComponent {
   onAgregar(record: any) {
     console.log('Registro agregado:', record);
   }
+
+  goBack() {
+    this.location.back();
+  }
+  
 }

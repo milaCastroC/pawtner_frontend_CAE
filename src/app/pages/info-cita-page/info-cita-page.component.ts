@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { SidebarComponent } from '../../globals/components/sidebar/sidebar.component';
 import { FooterComponent } from '../../globals/components/footer/footer.component';
@@ -25,7 +25,9 @@ import { AppointmentRecordItemComponentComponent } from '../../modules/pets/comp
   styleUrls: ['./info-cita-page.component.scss']
 })
 export class InfoCitaPageComponent {
-
+  constructor(
+    private location: Location
+  ) {}
   cita = {
     fecha: '01/02/2020',
     hora: '10:30 am',
@@ -68,5 +70,9 @@ export class InfoCitaPageComponent {
   agregarEntrada() {
     console.log('Agregar nueva entrada');
     // Lógica para agregar entrada nueva
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
