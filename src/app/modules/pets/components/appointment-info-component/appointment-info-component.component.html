@@ -1,14 +1,14 @@
 <section class="bg-white p-6 rounded-xl shadow border border-primary grid md:grid-cols-3 gap-4 mb-4">
   <div>
     <p class="text-sm text-neutral-grayDark">Fecha: </p>
-    <div class="bg-neutral-grayLightest p-2 rounded text-sm">{{ cita.fecha }}</div>
+    <div class="bg-neutral-grayLightest p-2 rounded text-sm">{{ formatApptDate() }}</div>
   </div>
   <div>
     <p class="text-sm text-neutral-grayDark">Hora: </p>
-    <div class="bg-neutral-grayLightest p-2 rounded text-sm">{{ cita.hora }}</div>
+    <div class="bg-neutral-grayLightest p-2 rounded text-sm">{{ schedule.horaInicio }}</div>
   </div>
   <div>
     <p class="text-sm text-neutral-grayDark">Veterinario: </p>
-    <div class="bg-neutral-grayLightest p-2 rounded text-sm font-semibold">{{ cita.veterinario }}</div>
+    <div class="bg-neutral-grayLightest p-2 rounded text-sm font-semibold">{{ veterinarianName }}</div>
   </div>
 </section>

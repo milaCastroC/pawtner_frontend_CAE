@@ -42,6 +42,7 @@ export class EditPetPageComponent {
 
   pet: Pet = {} as Pet;
   owner: Client | null = null;
+  medicalHistory: ItemHistory[] = [];
 
   @ViewChild('petEditFormRef') petEditForm!: PetEditFormComponent;
 
@@ -53,6 +54,10 @@ export class EditPetPageComponent {
       if (this.pet?.mascotaId != null) {
         this.clientService.getClientById(this.pet.propietarioId).subscribe((data: any) => {
           this.owner = data;
+        });
+
+        this.historyService.getHistoryByPetId(this.pet.mascotaId).subscribe((data: ItemHistory[]) => {
+          this.medicalHistory = data;
         });
       }
     });

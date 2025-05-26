@@ -15,8 +15,12 @@
           Consulta
         </div>
 
-        <app-appointment-info-component [cita]="cita"></app-appointment-info-component>
-        <app-appointment-pet-info-component [mascota]="mascota"></app-appointment-pet-info-component>
+        <app-appointment-info-component 
+          [cita]="appointment"
+          [schedule]="schedule"
+        >
+        </app-appointment-info-component>
+        <app-appointment-pet-info-component [pet]="pet" [owner]="owner"></app-appointment-pet-info-component>
 
         <!-- Historial médico -->
         <section>
@@ -24,11 +28,11 @@
 
           <div class="space-y-4">
             <app-appointment-record-item-component 
-              *ngFor="let record of historial; index as i"
+              *ngFor="let record of medicalHistory; index as i"
               [record]="record"
               [index]="i"
-              (editar)="editarHistorial(i)"
-              (eliminar)="eliminarHistorial(i)">
+              (editar)="editarItemHistorial(i)"
+              (eliminar)="eliminarItemHistorial(i)">
             </app-appointment-record-item-component>
           </div>
 

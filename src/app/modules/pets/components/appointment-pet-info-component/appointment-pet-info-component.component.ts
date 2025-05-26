@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointment-pet-info-component',
@@ -7,5 +8,14 @@ import { Component, Input } from '@angular/core';
   styleUrl: './appointment-pet-info-component.component.scss'
 })
 export class AppointmentPetInfoComponentComponent {
-  @Input() mascota: any;
+  constructor(
+    private router: Router
+  ){}
+
+  @Input() pet: any;
+  @Input() owner: any;
+
+  goToEditPet() {
+    this.router.navigate(['/mascotas/editar', this.pet.mascotaId]);
+  }
 }

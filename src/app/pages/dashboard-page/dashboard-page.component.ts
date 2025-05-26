@@ -15,6 +15,7 @@ import { ScheduleService } from '../../modules/schedule/services/schedule.servic
 import { Pet } from '../../models/pets/pet';
 import { parseISODateToLocalDate } from '../../globals/utils/dates/parseISODateToLocalDate';
 import { firstValueFrom } from 'rxjs';
+import { Schedule } from '../../models/schedule/schedule';
 
 
 @Component({
@@ -39,6 +40,11 @@ export class DashboardPageComponent implements OnInit {
     private petService: PetService,
     private scheduleService: ScheduleService
   ) {}
+
+  schedule: Schedule = {
+    horaInicio: new Date(),
+    horaFin: new Date()
+  }
 
   user = JSON.parse(sessionStorage.getItem('StorageUser') || '{}');
   vetName = this.user.name;
@@ -70,17 +76,18 @@ export class DashboardPageComponent implements OnInit {
     
     for (const appt of appointments) {
       const pet = await firstValueFrom(this.petService.getPetById(appt.mascotaId));
-      const schedule = this.scheduleService.getScheduleById(appt.horarioId)
+      //const schedule = this.scheduleService.getScheduleById(appt.horarioId)
 
-      let durationMs = schedule.horaFin.getTime() - schedule.horaInicio.getTime() ;
+      let durationMs = this.schedule.horaFin.getTime() - this.schedule.horaInicio.getTime() ;
       let durationMin = durationMs / 60000;
       let apptDate = parseISODateToLocalDate(appt.fecha);
       
       dashboardAppointments.push({
+        apptId: appt.citaId ?? 0,
         pet: pet,
         type: appt.tipoCita,
         date: formatDate(apptDate, 'dd/mm/yyyy'),
-        schedule: schedule,
+        schedule: this.schedule,
         duration: durationMin 
       });
 

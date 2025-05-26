@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Schedule } from '../../../models/schedule/schedule';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
 
-  constructor() { }
+  constructor(private readonly http: HttpClient) { }
 
-  getScheduleById(id: number): Schedule {
-    return {
-      horaInicio: new Date(2023, 10, 1, 9, 0),
-      horaFin: new Date(2023, 10, 1, 9, 30)
-    }
+  getScheduleById(id: number): Observable<Schedule> {
+    return this.http.get<Schedule>(`${environment.apiUrl}/horarios/${id}`);
   }
 }

@@ -13,6 +13,10 @@ export class AppointmentService {
 
   constructor(private readonly http: HttpClient) { }
 
+  getAppointmentById(appointmentId: number): Observable<Appointment> {
+    return this.http.get<Appointment>(`${environment.apiUrl}/citas/${appointmentId}`);
+  }
+
   getAppointmentsByVeterinarianDateStatus(filter:AppointmentFilter): Observable<Appointment[]> {
     const params = new HttpParams()
       .set('veterinarioId', filter.veterinarianId)

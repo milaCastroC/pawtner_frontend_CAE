@@ -2,7 +2,7 @@
 <div class="bg-white rounded-lg shadow overflow-hidden">
   <div class="divide-y divide-neutral-grayLighter">
     <div *ngFor="let appointment of appointments" class="p-4 hover:bg-neutral-grayLightest transition-colors">
-      <div class="flex items-start">
+      <div class="flex items-start" (click)="goToAppointmentDetails(appointment.apptId)" style="cursor: pointer;">
         <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
           <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
