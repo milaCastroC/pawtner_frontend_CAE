@@ -1,5 +1,5 @@
 // src / app / pages / edit - pet - page / edit - pet - page.component.ts
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { HeaderComponent } from '../../globals/components/header/header.component';
 import { SidebarComponent } from '../../globals/components/sidebar/sidebar.component';
@@ -7,6 +7,13 @@ import { FooterComponent } from '../../globals/components/footer/footer.componen
 import { MedicalRecordComponent } from '../../modules/pets/components/medical-record/medical-record.component';
 import { PetEditFormComponent } from '../../modules/pets/components/pet-edit-form/pet-edit-form.component';
 import { OwnerInfoCardComponent } from '../../modules/pets/components/owner-info-card/owner-info-card.component';
+import { ActivatedRoute } from '@angular/router';
+import { PetService } from '../../modules/pets/services/pet.service';
+import { ClientsService } from '../../modules/people/clients/services/clients.service';
+import { ItemHistoryService } from '../../modules/medicalHistory/services/item-history.service';
+import { Client } from '../../models/clients/client';
+import { Pet } from '../../models/pets/pet';
+import { ItemHistory } from '../../models/medicalHistory/item-history';
 
 
 @Component({
@@ -26,41 +33,38 @@ import { OwnerInfoCardComponent } from '../../modules/pets/components/owner-info
 })
 export class EditPetPageComponent {
   constructor(
+    private activeRoute: ActivatedRoute,
+    private petService: PetService,
+    private clientService: ClientsService,
+    private historyService: ItemHistoryService,
     private location: Location
-  ){}
+  ) { }
 
-  pet = {
-    id: 12345,
-    nombre: 'Manchas',
-    especie: 'Perro',
-    raza: 'Labrador',
-    edad: 5,
-    peso: 28.5,
-    fechaNacimiento: '2020-02-08',
-    sexo: 'Macho',
-    propietario: 'Juancho Martínez',
-    telefono: '310235634'
-  };
+  pet: Pet = {} as Pet;
+  owner: Client | null = null;
 
-  historial = [
-    {
-      fecha: '08/02/2020',
-      tipo: 'Control',
-      diagnostico: 'Vacunación anual y chequeo general.'
-    },
-    {
-      fecha: '12/06/2021',
-      tipo: 'Cirugía',
-      diagnostico: 'Esterilización realizada sin complicaciones.'
-    }
-  ];
+  @ViewChild('petEditFormRef') petEditForm!: PetEditFormComponent;
 
-  owner = {
-    nombre: 'Juancho Martínez',
-    telefono: '310235634'
-  };
+
+  ngOnInit(): void {
+    this.petService.getPetById(this.activeRoute.snapshot.params['id']).subscribe((data: Pet) => {
+      this.pet = data;
+
+      if (this.pet?.mascotaId != null) {
+        this.clientService.getClientById(this.pet.propietarioId).subscribe((data: any) => {
+          this.owner = data;
+        });
+      }
+    });
+
+  }
 
   goBack() {
     this.location.back();
   }
+
+  onSubmit() {
+  this.petEditForm.saveChanges();
+}
+
 }

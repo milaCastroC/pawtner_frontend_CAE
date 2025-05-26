@@ -10,12 +10,12 @@
             </h1>
 
             <!-- Componentes -->
-            <app-pet-edit-form [pet]="pet"></app-pet-edit-form>
+            <app-pet-edit-form #petEditFormRef [pet]="pet"></app-pet-edit-form>
             <app-owner-info-card [owner]="owner"></app-owner-info-card>
 
             <!-- Botón Guardar -->
             <div class="flex justify-center">
-                <button
+                <button (click)="onSubmit()"
                     class="flex items-center gap-2 text-sm text-white bg-primary hover:bg-support-lightgreen px-6 py-2 rounded-md">
                     <img src="assets/icons/edit_icon_white.png" alt="Guardar" class="w-5 h-5" />
                     Guardar Cambios

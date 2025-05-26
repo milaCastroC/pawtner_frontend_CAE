@@ -18,4 +18,8 @@ export class PetService {
   getPetById(id: number): Observable<Pet> {
     return this.http.get<any>(`${environment.apiUrl}/mascotas/${id}`);
   }
+
+  updatePet(pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(`${environment.apiUrl}/mascotas/${pet.mascotaId}`, pet);
+  }
 }

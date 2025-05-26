@@ -6,7 +6,7 @@ import { FooterComponent } from '../../globals/components/footer/footer.componen
 import { PetInfoComponent } from '../../modules/pets/components/pet-info/pet-info.component';
 import { MedicalRecordComponent } from '../../modules/pets/components/medical-record/medical-record.component';
 import { Pet } from '../../models/pets/pet';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PetService } from '../../modules/pets/services/pet.service';
 import { Client } from '../../models/clients/client';
 import { ItemHistory } from '../../models/medicalHistory/item-history';
@@ -26,7 +26,8 @@ export class PetDetailPageComponent implements OnInit {
     private petService: PetService,
     private clientService: ClientsService,
     private historyService: ItemHistoryService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
   pet: Pet | null = null;
   owner: Client | null = null;
@@ -39,9 +40,10 @@ export class PetDetailPageComponent implements OnInit {
       
       if (this.pet?.mascotaId != null) {
 
-        this.clientService.getClientById(this.pet.mascotaId).subscribe((data: any) => {
+        this.clientService.getClientById(this.pet.propietarioId).subscribe((data: any) => {
           this.owner = data;
-
+          console.log(this.owner);
+          
         });
 
         this.historyService.getHistoryByPetId(this.pet.mascotaId).subscribe((data: ItemHistory[]) => {
@@ -55,6 +57,12 @@ export class PetDetailPageComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  goToEditPage() {
+    if (this.pet) {
+      this.router.navigate([`/mascotas/editar/`,this.pet.mascotaId]);
+    }
   }
 }
 
