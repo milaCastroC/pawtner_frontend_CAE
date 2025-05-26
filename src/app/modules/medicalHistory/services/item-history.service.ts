@@ -18,4 +18,11 @@ export class ItemHistoryService {
   addItemHistory(item: ItemHistory): Observable<ItemHistory> {
     return this.http.post<ItemHistory>(`${environment.apiUrl}/api/historial/create`, item);
   }
+
+  deleteItemHistory(itemId: number): Observable<string> {
+    return this.http.delete(`${environment.apiUrl}/api/historial/delete/${itemId}`, {
+      responseType: 'text'
+    });
+  }
+
 }

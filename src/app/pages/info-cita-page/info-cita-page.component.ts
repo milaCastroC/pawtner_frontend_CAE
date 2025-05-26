@@ -124,6 +124,18 @@ export class InfoCitaPageComponent implements OnInit {
     this.router.navigate(['cita', this.appointment.citaId, 'agregar-historial', 'mascota', this.pet.mascotaId]);
   }
 
+  loadData() {
+    this.itemHistoryService.getHistoryByPetId(this.appointment.mascotaId).subscribe({
+      next: (historyData: ItemHistory[]) => {
+        this.medicalHistory = historyData;
+      }
+    });
+  }
+
+  onDeleteItemHistory() {
+    this.loadData();
+  }
+
   goBack() {
     this.location.back();
   }

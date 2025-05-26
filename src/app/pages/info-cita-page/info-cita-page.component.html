@@ -31,8 +31,8 @@
               *ngFor="let record of medicalHistory; index as i"
               [record]="record"
               [index]="i"
-              (editar)="editarItemHistorial(i)"
-              (eliminar)="eliminarItemHistorial(i)">
+              (recordDeleted)="onDeleteItemHistory()"
+              >
             </app-appointment-record-item-component>
           </div>
 

@@ -8,11 +8,18 @@
     <p class="text-sm text-neutral-grayDark"><strong>Diagnóstico:</strong> {{ record.diagnostico }}</p>
   </div>
   <div class="flex items-center gap-2 text-lg">
-    <button class="text-primary hover:text-blue-700 transition" (click)="editar.emit(index)">
+    <button class="text-primary hover:text-blue-700 transition" (click)="editRecord()">
       <img src="assets/icons/edit_icon.png" alt="Editar" class="w-5 h-5" />
     </button>
-    <button class="text-red-500 hover:text-red-700 transition" (click)="eliminar.emit(index)">
+    <button class="text-red-500 hover:text-red-700 transition" (click)="showConfirmationModal()">
       <img src="assets/icons/delete_icon.png" alt="Eliminar" class="w-5 h-5" />
     </button>
   </div>
 </div>
+
+<app-confirmation-modal
+  [visible]="showModal"
+  [message]="'¿Seguro que deseas eliminar este historial? Esta acción no se puede deshacer.'"
+  (onConfirm)="deleteRecord()"
+  (onCancel)="showModal = false"
+></app-confirmation-modal>

@@ -5,7 +5,7 @@
   </div>
   <div>
     <p class="text-sm text-neutral-grayDark">Hora: </p>
-    <div class="bg-neutral-grayLightest p-2 rounded text-sm">{{ schedule.horaInicio }}</div>
+    <div *ngIf="schedule" class="bg-neutral-grayLightest p-2 rounded text-sm">{{ schedule.horaInicio! }}</div>
   </div>
   <div>
     <p class="text-sm text-neutral-grayDark">Veterinario: </p>
