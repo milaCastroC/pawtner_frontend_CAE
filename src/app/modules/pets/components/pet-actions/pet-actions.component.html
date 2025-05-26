@@ -12,9 +12,16 @@
       <img src="assets/icons/edit_icon.png" alt="Editar" class="w-5 h-5" />
       <span>Editar</span>
     </button>
-    <button (click)="eliminar()" class="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-100 text-red-600">
+    <button (click)="showConfirmationModal()" class="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-100 text-red-600">
       <img src="assets/icons/delete_icon.png" alt="Eliminar" class="w-5 h-5" />
       <span>Eliminar</span>
     </button>
   </div>
 </div>
+
+<app-confirmation-modal
+  [visible]="showModal"
+  [message]="'¿Seguro que deseas eliminar la mascota? Esta acción no se puede deshacer.'"
+  (onConfirm)="eliminar()"
+  (onCancel)="showModal = false"
+></app-confirmation-modal>

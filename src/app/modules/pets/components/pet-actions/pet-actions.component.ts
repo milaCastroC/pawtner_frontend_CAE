@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationModalComponent } from '../../../../globals/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-pet-actions',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ConfirmationModalComponent],
   templateUrl: './pet-actions.component.html',
   styleUrl: './pet-actions.component.scss'
 })
@@ -14,6 +15,8 @@ export class PetActionsComponent {
   @Input() petId!: any;
 
   isOpen = false;
+  showModal = false;
+  
 
   toggleMenu() {
     this.isOpen = !this.isOpen;
@@ -34,7 +37,14 @@ export class PetActionsComponent {
   }
 
   eliminar() {
-    console.log('Eliminar mascota');
-    this.closeMenu();
+    this.closeModal();
+  }
+
+  showConfirmationModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }
