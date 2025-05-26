@@ -12,5 +12,4 @@ import { ActivatedRoute } from '@angular/router';
 export class PetInfoComponent {
   @Input() pet: any;
   @Input() owner: any;
-  @Input() medicalHistory: any;
 }

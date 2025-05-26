@@ -14,4 +14,8 @@ export class ItemHistoryService {
   getHistoryByPetId(petId: number): Observable<ItemHistory[]> {
     return this.http.get<ItemHistory[]>(`${environment.apiUrl}/api/historial/by-mascota/${petId}`);
   }
+
+  addItemHistory(item: ItemHistory): Observable<ItemHistory> {
+    return this.http.post<ItemHistory>(`${environment.apiUrl}/api/historial/create`, item);
+  }
 }

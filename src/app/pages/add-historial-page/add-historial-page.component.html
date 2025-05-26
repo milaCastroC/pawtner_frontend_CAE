@@ -10,10 +10,10 @@
             </h1>
 
             <!-- Información de la mascota -->
-            <app-pet-info [pet]="pet" />
+            <app-pet-info [pet]="pet" [owner]="owner"/>
 
             <!-- Formulario -->
-            <app-add-medical-record-form (agregar)="onAgregar($event)" />
+            <app-add-medical-record-form [citaId]="citaId"/>
         </main>
     </div>
 

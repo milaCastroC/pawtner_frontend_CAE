@@ -1,10 +1,10 @@
 export interface ItemHistory {
     itemHistorialId?: number;
     mascotaId: number;
-    fecha: Date;
+    fecha: string;
     diagnostico: string;
     tratamiento: string;
     observaciones?: string;
-    tipo?: string;
-    citaId?: number;
+    tipo: string;
+    citaId: number;
 }

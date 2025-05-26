@@ -12,7 +12,7 @@ import { ItemHistory } from '../../models/medicalHistory/item-history';
 import { AppointmentService } from '../../modules/appointments/services/appointment.service';
 import { PetService } from '../../modules/pets/services/pet.service';
 import { ItemHistoryService } from '../../modules/medicalHistory/services/item-history.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Schedule } from '../../models/schedule/schedule';
 import { ScheduleService } from '../../modules/schedule/services/schedule.service';
 import { Client } from '../../models/clients/client';
@@ -38,6 +38,7 @@ export class InfoCitaPageComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private location: Location,
+    private router: Router,
     private apptService: AppointmentService,
     private petServe: PetService,
     private itemHistoryService: ItemHistoryService,
@@ -119,9 +120,8 @@ export class InfoCitaPageComponent implements OnInit {
     console.log(`Eliminar item de historial en índice: ${index}`);
   }
 
-  agregarEntrada() {
-    console.log('Agregar nueva entrada');
-    // Lógica para agregar entrada nueva
+  goToAddItemHistory() {
+    this.router.navigate(['cita', this.appointment.citaId, 'agregar-historial', 'mascota', this.pet.mascotaId]);
   }
 
   goBack() {
