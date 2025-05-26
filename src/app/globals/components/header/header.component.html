@@ -16,7 +16,7 @@
 
     <!-- Botón cerrar sesión solo en escritorio -->
     <div class="hidden sm:flex justify-end">
-      <button class="bg-primary text-white font-semibold px-4 py-2 rounded hover:bg-support-navy transition">
+      <button (click)="logout()" class="bg-primary text-white font-semibold px-4 py-2 rounded hover:bg-support-navy transition">
         Cerrar sesión
       </button>
     </div>
