@@ -50,4 +50,16 @@ export class ViewPetsPageComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+  loadData() {
+    this.petService.getAllPets().subscribe((data) => {
+      this.allPets = data;
+      console.log('aquitoy');
+      
+    });
+  }
+
+  onPetDeleted() {
+    this.loadData(); // Vuelve a cargar los datos tras la modificación
+  }
 }
