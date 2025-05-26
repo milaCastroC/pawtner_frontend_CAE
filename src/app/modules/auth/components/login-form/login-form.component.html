@@ -21,7 +21,7 @@
           <label for="username" class="block text-sm font-medium text-neutral-grayDark">Nombre de usuario</label>
           <input id="username" type="text" formControlName="username"
             class="mt-1 w-full px-4 py-2 border border-neutral-grayLighter rounded-md focus:outline-none focus:ring-2 focus:ring-primary" 
-            placeholder="correo@example.com" />
+            placeholder="username" />
           <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-sm text-state-error mt-1">
             Nombre de usuario requerido
           </div>
