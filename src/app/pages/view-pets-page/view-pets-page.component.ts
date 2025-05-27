@@ -8,13 +8,14 @@ import { PetService } from '../../modules/pets/services/pet.service';
 import { ClientsService } from '../../modules/people/clients/services/clients.service';
 import { Pet } from '../../models/pets/pet';
 import { Client } from '../../models/clients/client';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-view-pets-page',
   standalone: true,
   templateUrl: './view-pets-page.component.html',
   styleUrl: './view-pets-page.component.scss',
-  imports: [CommonModule, HeaderComponent, FooterComponent, SidebarComponent, PetActionsComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, SidebarComponent, PetActionsComponent, FormsModule],
 })
 export class ViewPetsPageComponent implements OnInit {
   constructor(
@@ -25,6 +26,7 @@ export class ViewPetsPageComponent implements OnInit {
 
   allPets: Pet[] = [];
   filteredPets: Pet[] = [];
+  searchTerm: string = '';
 
   clientMap = new Map<number, string>(); // <id, nombre>
 
@@ -42,6 +44,21 @@ export class ViewPetsPageComponent implements OnInit {
       });
     });
   }
+
+  onSearchChange(term: string) {
+  const lowerTerm = term.toLowerCase();
+
+  if (!term.trim()) {
+    this.filteredPets = this.allPets;
+  } else {
+    this.filteredPets = this.allPets.filter(pet =>
+      pet.nombre.toLowerCase().includes(lowerTerm) ||
+      this.getPropietarioNombre(pet.propietarioId).toLowerCase().includes(lowerTerm) ||
+      pet.mascotaId?.toString().includes(lowerTerm) 
+    );
+  }
+}
+
 
   getPropietarioNombre(id: number): string {
     return this.clientMap.get(id) || 'Desconocido';

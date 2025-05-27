@@ -23,7 +23,9 @@
 
                     <!-- Buscador -->
                     <div class="relative w-full md:w-80">
-                        <input type="text" placeholder="Buscar"
+                        <input type="text" placeholder="Buscar" 
+                            [(ngModel)]="searchTerm"
+                            (ngModelChange)="onSearchChange($event)"
                             class="w-full pl-10 pr-4 py-2 border border-neutral-grayLight rounded-md focus:outline-none focus:ring-2 focus:ring-primary" />
                         <img src="assets/icons/buscar_icon.png" alt="Buscar"
                             class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" />
@@ -46,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let pet of allPets" class="bg-white border-b hover:bg-neutral-grayLighter">
+                            <tr *ngFor="let pet of filteredPets" class="bg-white border-b hover:bg-neutral-grayLighter">
                                 <td class="p-2">{{ pet.mascotaId }}</td>
                                 <td class="p-2">{{ pet.nombre }}</td>
                                 <td class="p-2">{{ pet.especie }}</td>
