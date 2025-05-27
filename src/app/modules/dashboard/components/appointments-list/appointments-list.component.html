@@ -16,7 +16,7 @@
             {{appointment.date}}
           </p>
           <p class="text-sm text-neutral-grayLight mt-1">
-            {{formatTime(appointment.schedule.horaInicio)}} - {{formatTime(appointment.schedule.horaFin)}} • 
+            {{appointment.schedule.horaInicio}} - {{appointment.schedule.horaFin}} • 
             {{appointment.duration ? + appointment.duration + ' mins' : 'INFO CITA'}}
           </p>
         </div>

@@ -20,7 +20,12 @@ export class AppointmentsListComponent {
   @Input() appointments: DashboardAppointment[] = [];
 
   formatTime(date: Date): string {
-    return formatTimeToHHmm(date);
+    console.log(date);
+    
+    let hora = formatTimeToHHmm(date);
+    console.log(hora);
+    
+    return hora;
   }
 
   goToAppointmentDetails(appointmentId: number) {

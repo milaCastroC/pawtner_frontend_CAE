@@ -14,9 +14,8 @@ import { PetService } from '../../modules/pets/services/pet.service';
 import { ScheduleService } from '../../modules/schedule/services/schedule.service';
 import { Pet } from '../../models/pets/pet';
 import { parseISODateToLocalDate } from '../../globals/utils/dates/parseISODateToLocalDate';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, forkJoin } from 'rxjs';
 import { Schedule } from '../../models/schedule/schedule';
-
 
 @Component({
   selector: 'app-dashboard-page',
@@ -28,23 +27,17 @@ import { Schedule } from '../../models/schedule/schedule';
     PetCardComponent,
     FooterComponent,
     SidebarComponent
-],
+  ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'
 })
-
 export class DashboardPageComponent implements OnInit {
 
   constructor(
     private appointmentService: AppointmentService,
     private petService: PetService,
     private scheduleService: ScheduleService
-  ) {}
-
-  schedule: Schedule = {
-    horaInicio: new Date(),
-    horaFin: new Date()
-  }
+  ) { }
 
   user = JSON.parse(sessionStorage.getItem('StorageUser') || '{}');
   vetName = this.user.name;
@@ -59,52 +52,86 @@ export class DashboardPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.filter.date);
-    
     this.appointmentService.getAppointmentsByVeterinarianDateStatus(this.filter)
       .subscribe({
-        next: (appointments: Appointment[]) => {
-          this.loadFullAppointmentData(appointments);
+        next: async (appointments: Appointment[]) => {
+          try {
+            await this.loadFullAppointmentData(appointments);
+          } catch (error) {
+            console.error('Error al cargar datos completos de citas:', error);
+          }
         },
         error: (err) => console.error('Error al obtener citas:', err)
       });
   }
 
-  private async loadFullAppointmentData(appointments: Appointment[]) {
+  private async loadFullAppointmentData(appointments: Appointment[]): Promise<void> {
     const dashboardAppointments: DashboardAppointment[] = [];
-    console.log(appointments);
+
+    // Cargar todos los datos en paralelo para mejor performance
+    const petPromises = appointments.map(appt => 
+      firstValueFrom(this.petService.getPetById(appt.mascotaId))
+    );
     
-    for (const appt of appointments) {
-      const pet = await firstValueFrom(this.petService.getPetById(appt.mascotaId));
-      //const schedule = this.scheduleService.getScheduleById(appt.horarioId)
+    const schedulePromises = appointments.map(appt => 
+      firstValueFrom(this.scheduleService.getScheduleById(appt.horarioId))
+    );
 
-      let durationMs = this.schedule.horaFin.getTime() - this.schedule.horaInicio.getTime() ;
-      let durationMin = durationMs / 60000;
-      let apptDate = parseISODateToLocalDate(appt.fecha);
+    try {
+      // Esperar a que todos los calls asíncronos terminen
+      const [pets, schedules] = await Promise.all([
+        Promise.all(petPromises),
+        Promise.all(schedulePromises)
+      ]);
+
+      for (let i = 0; i < appointments.length; i++) {
+        const appt = appointments[i];
+        const pet = pets[i];
+        const schedule = schedules[i];
+        
+        let apptDate = parseISODateToLocalDate(appt.fecha);
+
+        dashboardAppointments.push({
+          apptId: appt.citaId ?? 0,
+          pet: pet,
+          schedule: schedule,
+          type: appt.tipoCita,
+          date: formatDate(apptDate, 'dd/mm/yyyy'),
+          duration: this.getAppointmentDuration(schedule)
+        });
+
+        this.pets.push(pet);
+      }
+
+      this.todaysAppointments = dashboardAppointments;
+      console.log('Citas del día:', this.todaysAppointments);
       
-      dashboardAppointments.push({
-        apptId: appt.citaId ?? 0,
-        pet: pet,
-        type: appt.tipoCita,
-        date: formatDate(apptDate, 'dd/mm/yyyy'),
-        schedule: this.schedule,
-        duration: durationMin 
-      });
+    } catch (error) {
+      console.error('Error al cargar pets o schedules:', error);
+    }
+  }
 
-      this.pets.push(pet);
+  private getAppointmentDuration(schedule: Schedule): number {
+    if (!schedule || !schedule.horaInicio || !schedule.horaFin) {
+      console.warn('Schedule data missing or invalid');
+      return 0;
     }
 
-    this.todaysAppointments = dashboardAppointments;
+    try {
+      const start = new Date(schedule.horaInicio);
+      const end = new Date(schedule.horaFin);
+      
+      // Verificar que las fechas sean válidas
+      if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+        console.warn('Invalid date values in schedule:', schedule);
+        return 0;
+      }
+
+      const durationMin = Math.round((end.getTime() - start.getTime()) / 60000);
+      return durationMin;
+    } catch (error) {
+      console.error('Error calculating duration:', error);
+      return 0;
+    }
   }
 }
-
-  // todaysAppointments: Appointment[] = [
-  //   {
-  //     petName: 'Max',
-  //     type: 'Consulta general',
-  //     time: new Date(2023, 5, 15, 10, 0),
-  //     duration: 30
-  //   },
-  //   // Más citas...
-  // ];
-  
